@@ -3,7 +3,6 @@
     type="rviz"
     name="rviz"
     output="screen"
-    args="-d $(find decomp_test_node)/launch/test.rviz"/>
+    args="-d $(find decomp_test_node)/launch/2D_map.rviz"/>
 
 </launch>
-

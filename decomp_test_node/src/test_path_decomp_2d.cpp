@@ -17,7 +17,7 @@ int main(int argc, char ** argv){
   ros::Publisher poly_pub = nh.advertise<decomp_ros_msgs::PolyhedronArray>("polyhedron_array", 1, true);
 
   std::string file_name, topic_name, path_file;
-
+  ros::Time t1 = ros::Time::now();
   nh.param("path_file", path_file, std::string("path.txt"));
   nh.param("bag_file", file_name, std::string("voxel_map"));
   nh.param("bag_topic", topic_name, std::string("voxel_map"));
@@ -54,8 +54,8 @@ int main(int argc, char ** argv){
   decomp_ros_msgs::PolyhedronArray poly_msg = DecompROS::polyhedron_array_to_ros(decomp_util.get_polyhedrons());
   poly_msg.header.frame_id = "map";
   poly_pub.publish(poly_msg);
-
-
+  ros::Time t2 = ros::Time::now();
+  std::cout<<"t1: "<<t1<<"t2: "<<t2<<std::endl;
   //Convert to inequality constraints Ax < b
   auto polys = decomp_util.get_polyhedrons();
   for(size_t i = 0; i < path.size() - 1; i++) {
